@@ -125,7 +125,10 @@ pkg install -y git php curl wget unzip termux-api
 git clone https://github.com/dreamed000/PhantomEye.git
 
 # Navigate to directory
-cd PhantomEye_v4
+cd PhantomEye
+
+# Start PhantomEye
+bash phantomeye.sh
 
 # Set permissions
 chmod +x phantomeye.sh
