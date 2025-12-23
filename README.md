@@ -127,11 +127,12 @@ git clone https://github.com/dreamed000/PhantomEye.git
 # Navigate to directory
 cd PhantomEye
 
-# Start PhantomEye
-bash phantomeye.sh
-
 # Set permissions
 chmod +x phantomeye.sh
 
 # Grant storage permission (optional)
 termux-setup-storage
+
+# Start PhantomEye
+bash phantomeye.sh
+
