@@ -1,138 +1,114 @@
-# PhantomEye V4.0
+<!-- Shield Badges for visual appeal and immediate project status recognition -->
+<div align="center">
 
-![PhantomEye Banner](https://img.shields.io/badge/PhantomEye-V4.0-red)
-![Platform](https://img.shields.io/badge/Platform-Termux%20%7C%20Kali%20%7C%20Windows%20%7C%20Linux%20%7C%20macOS-blue)
-![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple)
-![License](https://img.shields.io/badge/License-MIT-green)
-![Status](https://img.shields.io/badge/Status-Fully%20Tested-brightgreen)
+# 🔐 PhantomEye V4.0
+
+**Browser Security Awareness & Web API Demonstration Platform**
+
+*An educational, multi-platform framework designed exclusively for authorized security research, controlled lab demonstrations, and cybersecurity education.*
+
+[![GitHub License](https://img.shields.io/badge/License-MIT-important)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#contributing)
+[![Maintenance](https://img.shields.io/badge/Maintained-Actively%20Developed-informational)](#)
+[![Platform](https://img.shields.io/badge/Platform-Termux%20|%20Kali%20|%20Linux%20|%20macOS%20|%20WSL-blue)](#-system-requirements)
+
+</div>
+
+---
+
+## 🚨 Critical Legal & Ethical Notice
+
+> **⚠️ WARNING: STRICT LEGAL BOUNDARIES**
+>
+> **PhantomEye V4.0 is developed and distributed solely for legitimate, authorized purposes within educational and lab contexts.**
+
+### 🛡️ Authorized Use Cases
+You may use this tool **ONLY** if you fall into one of the following categories:
+*   **Security Professionals & Penetration Testers** conducting assessments **with explicit, written permission**.
+*   **Security Researchers** analyzing systems they own or have explicit authority to test.
+*   **Educational Institutions & Students** using the tool in controlled lab environments for learning cybersecurity principles.
+*   **System Administrators** testing the security of their own infrastructure.
+
+### ⛔ Strictly Prohibited Activities
+Unauthorized use of this software is a criminal offense in most jurisdictions. Prohibited activities include, but are not limited to:
+*   Testing systems without the **owner's explicit consent**.
+*   Accessing or modifying data you are not authorized to.
+*   Disrupting services or causing harm.
+*   Violating individual privacy.
+*   Any activity intended to act maliciously or unlawfully.
+
+### 📜 Full Disclaimer
+**THE DEVELOPERS AND CONTRIBUTORS OF PHANTOMEYE V4.0 ASSUME NO LIABILITY AND ARE NOT RESPONSIBLE FOR ANY MISUSE OR DAMAGE CAUSED BY THIS PROGRAM.** By using this software, you agree to comply with all applicable laws.  
+
+> ⚠️ Note: This project does NOT bypass browser security, does NOT access devices without consent, and does NOT exploit vulnerabilities. All interactions rely strictly on standard browser permission prompts.
+
+---
 
 ## 📋 Table of Contents
-- [Overview](#overview)
-- [Features](#-features)
-- [Legal Disclaimer](#-legal-disclaimer)
-- [System Requirements](#-system-requirements)
-- [Installation Guide](#-installation-guide)
-- [Quick Start](#-quick-start)
-- [File Structure](#-file-structure)
-- [Usage Guide](#-usage-guide)
-- [Tunnel Services Comparison](#-tunnel-services-comparison)
-- [Template Details](#-template-details)
-- [Data Captured](#-data-captured)
-- [Technical Architecture](#-technical-architecture)
-- [Testing Results](#-testing-results)
-- [Troubleshooting](#-troubleshooting)
-- [Frequently Asked Questions](#-frequently-asked-questions)
-- [Security Best Practices](#-security-best-practices)
-- [Ethical Guidelines](#-ethical-guidelines)
-- [Updates & Changelog](#-updates--changelog)
-- [Contributing](#-contributing)
-- [Credits & Acknowledgments](#-credits--acknowledgments)
-- [Support](#-support)
-- [License](#-license)
 
-## Overview
-PhantomEye V4.0 is an advanced, multi-platform penetration testing tool designed for authorized security assessments and educational purposes. It provides comprehensive data capture capabilities including real-time location tracking, camera access, and video recording through carefully crafted social engineering scenarios.
+*   [✨ Overview](#-overview)
+*   [🎯 Core Features](#-core-features)
+*   [⚙️ System Requirements](#️-system-requirements)
+*   [🚀 Quick Installation](#-quick-installation)
+*   [📖 Comprehensive Usage Guide](#-comprehensive-usage-guide)
+*   [🏗️ Architecture & Data Flow](#️-architecture--data-flow)
+*   [🤝 Contributing Guidelines](#-contributing-guidelines)
+*   [❓ Frequently Asked Questions (FAQ)](#-frequently-asked-questions-faq)
+*   [📜 License](#-license)
 
-## ✨ Features
+---
 
-### Core Capabilities
-- **Multi-Platform Support**: Full compatibility with Termux, Kali Linux, Windows, Linux, and macOS
-- **Multiple Tunnel Options**: Ngrok, Cloudflare Tunnel, LocalTunnel, and Local PHP Server
-- **Comprehensive Data Capture**: IP addresses, geolocation, video recordings
-- **Smart Video Processing**: Chunk-based recording with automatic merging
-- **Advanced Location Tracking**: Dual-mode location capture with retry mechanism
+## ✨ Overview
 
-### Technical Features
-- **Auto-Dependency Installation**: Automatic detection and installation of missing dependencies
-- **Process Management**: Proper cleanup and termination of background services
-- **Error Resilience**: Comprehensive error handling with fallback mechanisms
-- **Smart Logging**: Filtered logging system to remove noise and debug information
-- **Security Hardened**: Input validation, XSS prevention, and file type restrictions
+PhantomEye V4.0 is a professional **educational security lab framework**.  
+It demonstrates how browsers request permissions and how web APIs handle media and location access in a **controlled lab environment**.  
 
-### User Experience
-- **Interactive CLI**: User-friendly command-line interface with color-coded output
-- **Real-time Monitoring**: Live updates on captured data
-- **Automatic File Organization**: Structured directory system for captured data
-- **Template System**: Pre-built professional-looking templates for various scenarios
+**Primary Goals:**
+1. **Education:** Serve as a teaching tool for cybersecurity courses on client-side security and browser permissions.  
+2. **Research:** Enable security professionals to test and understand system behavior **ethically**.  
+3. **Awareness:** Promote user privacy and consent awareness in web applications.
 
-## ⚠️ Legal Disclaimer
+---
 
-**IMPORTANT - READ BEFORE USE**
+## 🎯 Core Features
 
-### Legal Notice
-This software is intended **SOLELY** for:
-- Authorized penetration testing with written permission
-- Security research in controlled environments
-- Educational purposes in academic settings
-- Testing your own systems that you own or have explicit permission to test
+| Feature | Description | Purpose |
+| :--- | :--- | :--- |
+| **🌐 Multi-Tunnel Support** | Generates lab testing links via Cloudflare, Ngrok, LocalTunnel, or local PHP server. | Allows easy testing in controlled environments. |
+| **📝 User Awareness Simulation Templates** | Pre-built educational pages (Greeting, Meeting, YouTube Demo) that request browser permissions. | Demonstrates how users interact with permission prompts responsibly. |
+| **📍 Geolocation Demonstration** | Shows multiple techniques (GPS, network-based, IP fallback) for learning purposes. | Helps learners understand location APIs without invading privacy. |
+| **📹 Browser Permission Demonstration** | Demonstrates how browsers request camera / media access, strictly with consent. | Educates users about media permission prompts. |
+| **⚡ Smart Data Handling** | Automatic file organization, structured logs, and lab-safe data handling. | Keeps test data organized for educational analysis. |
 
-### Strictly Prohibited
-- Unauthorized testing of any system
-- Malicious activities or cyber attacks
-- Violation of privacy laws
-- Any illegal activities
+---
 
-### Liability
-The developers assume **NO LIABILITY** for any misuse of this software. Users are solely responsible for ensuring they have proper authorization before using this tool. By using this software, you acknowledge that you understand and agree to these terms.
+## ⚙️ System Requirements
 
-**ALWAYS OBTAIN PROPER AUTHORIZATION BEFORE CONDUCTING ANY SECURITY TESTING**
+### Recommended Hardware
+*   **Processor:** 1.5 GHz dual-core (64-bit)
+*   **RAM:** 2 GB minimum
+*   **Storage:** 500 MB free space
+*   **Network:** Stable internet connection for tunnel services
 
-## 🔧 System Requirements
+### Software Dependencies
+The core script will attempt to install missing dependencies, but pre-installing these is recommended:
 
-### Minimum Requirements
-- **Processor**: 1 GHz or faster
-- **RAM**: 512 MB minimum, 1 GB recommended
-- **Storage**: 100 MB free space
-- **Internet**: Active connection for tunneling services
+| Platform | Core Dependencies | Command |
+| :--- | :--- | :--- |
+| **Kali Linux / Debian** | `php`, `curl`, `wget`, `unzip` | `sudo apt install php curl wget unzip` |
+| **Termux (Android)** | `php`, `curl`, `wget`, `unzip`, `termux-api` | `pkg install php curl wget unzip termux-api` |
+| **macOS (via Homebrew)** | `php`, `curl`, `wget` | `brew install php curl wget` |
 
-### Software Requirements
-#### For Termux (Android)
-- Termux app (from F-Droid)
-- Android 7.0 or higher
-- Storage permission granted
+---
 
-#### For Kali Linux
-- Kali Linux 2023.x or newer
-- Root/sudo access
-- Working package manager
+## 🚀 Quick Installation
 
-#### For Windows
-- Windows 10/11 with WSL2 (recommended)
-- OR native PHP installation
-- Administrator privileges
-
-#### For macOS
-- macOS 10.15 (Catalina) or newer
-- Homebrew package manager
-- Terminal access
-
-### Network Requirements
-- Open ports: 3333 (local server)
-- Outbound connections allowed
-- No aggressive firewall blocking
-
-## 📥 Installation Guide
-
-### Termux Installation
+### For Kali Linux / Most Linux Distributions
 ```bash
-# Update and upgrade packages
-pkg update -y && pkg upgrade -y
+# Clone the repository
+git clone https://github.com/yourusername/PhantomEye_v4.git
+cd PhantomEye_v4
 
-# Install essential tools
-pkg install -y git php curl wget unzip termux-api
-
-# Clone repository
-git clone https://github.com/dreamed000/PhantomEye.git
-
-# Navigate to directory
-cd PhantomEye
-
-# Set permissions
+# Make the script executable and run it
 chmod +x phantomeye.sh
-
-# Grant storage permission (optional)
-termux-setup-storage
-
-# Start PhantomEye
-bash phantomeye.sh
-
+./phantomeye.sh
