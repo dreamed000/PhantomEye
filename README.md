@@ -123,9 +123,11 @@ cd PhantomEye
 chmod +x phantomeye.sh
 bash phantomeye.sh
 
-### License
+
+## License
 This project is licensed under the MIT License.
 
-### Final Note
+
+## Final Note
 Education, ethics, and responsible practice come first.
 This project demonstrates browser security, permission handling, and user-awareness best practices in a controlled lab environment.
