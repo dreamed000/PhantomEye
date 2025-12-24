@@ -2,14 +2,13 @@
 
 
 # 🔐 PhantomEye — Enterprise Security Policy
-
+</div>
 > **Document Type:** Security & Responsible Use Policy  
 > **Version:** 4.0  
 > **Classification:** Public  
 > **Maintainer:** DreamDrafted  
 > **Last Updated:** 2024-12-24
 
-</div>
 
 
 ## 🎯 Purpose & Intent
@@ -164,3 +163,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 
 THE SOFTWARE.
+
