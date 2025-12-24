@@ -38,7 +38,7 @@ Unauthorized use of this software is a criminal offense in most jurisdictions. P
 *   Any activity intended to act maliciously or unlawfully.
 
 ### 📜 Full Disclaimer
-**THE DEVELOPERS AND CONTRIBUTORS OF PHANTOMEYE V4.0 ASSUME NO LIABILITY AND ARE NOT RESPONSIBLE FOR ANY MISUSE OR DAMAGE CAUSED BY THIS PROGRAM.** By using this software, you agree to comply with all applicable laws.  
+**THE DEVELOPERS AND CONTRIBUTORS OF PHANTOMEYE ASSUME NO LIABILITY AND ARE NOT RESPONSIBLE FOR ANY MISUSE OR DAMAGE CAUSED BY THIS PROGRAM.** By using this software, you agree to comply with all applicable laws.  
 
 > ⚠️ Note: This project does NOT bypass browser security, does NOT access devices without consent, and does NOT exploit vulnerabilities. All interactions rely strictly on standard browser permission prompts.
 
