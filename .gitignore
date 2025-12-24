@@ -1,0 +1,11 @@
+# Ignore all .webm, .log, and .txt files anywhere in the repo
+*.webm
+*.log
+*.txt
+
+# Ignore specific folders completely
+saved_locations/
+saved_videos/
+
+# Ignore a specific subfolder explicitly (extra safety)
+saved_videos/final/
