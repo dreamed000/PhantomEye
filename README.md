@@ -123,10 +123,12 @@ cd PhantomEye
 chmod +x phantomeye.sh
 bash phantomeye.sh
 
+---
 
 ## License
 This project is licensed under the MIT License.
 
+---
 
 ## Final Note
 Education, ethics, and responsible practice come first.
