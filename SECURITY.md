@@ -1,7 +1,4 @@
 <div align="center">
-https://img.shields.io/badge/Security-Enterprise-blue?style=for-the-badge&logo=shield-check&logoColor=white
-https://img.shields.io/badge/License-MIT-green?style=for-the-badge&logo=open-source-initiative&logoColor=white
-https://img.shields.io/badge/Version-4.0-black?style=for-the-badge&logo=git&logoColor=white
 
 
 # 🔐 PhantomEye — Enterprise Security Policy
@@ -165,4 +162,5 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+
 THE SOFTWARE.
