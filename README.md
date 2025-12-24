@@ -1,7 +1,7 @@
 <!-- Shield Badges for visual appeal and immediate project status recognition -->
 <div align="center">
 
-# 🔐 PhantomEye V4.0
+# 🔐 PhantomEye
 
 **Browser Security Awareness & Web API Demonstration Platform**
 
@@ -20,7 +20,7 @@
 
 > **⚠️ WARNING: STRICT LEGAL BOUNDARIES**
 >
-> **PhantomEye V4.0 is developed and distributed solely for legitimate, authorized purposes within educational and lab contexts.**
+> **PhantomEye is developed and distributed solely for legitimate, authorized purposes within educational and lab contexts.**
 
 ### 🛡️ Authorized Use Cases
 You may use this tool **ONLY** if you fall into one of the following categories:
@@ -60,7 +60,7 @@ Unauthorized use of this software is a criminal offense in most jurisdictions. P
 
 ## ✨ Overview
 
-PhantomEye V4.0 is a professional **educational security lab framework**.  
+PhantomEye is a professional **educational security lab framework**.  
 It demonstrates how browsers request permissions and how web APIs handle media and location access in a **controlled lab environment**.  
 
 **Primary Goals:**
@@ -106,9 +106,26 @@ The core script will attempt to install missing dependencies, but pre-installing
 ### For Kali Linux / Most Linux Distributions
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/PhantomEye_v4.git
-cd PhantomEye_v4
+git clone https://github.com/dreamed000/PhantomEye.git
+cd PhantomEye
 
 # Make the script executable and run it
 chmod +x phantomeye.sh
 ./phantomeye.sh
+
+
+### For Termux
+```bash
+git clone https://github.com/dreamed000/PhantomEye.git
+cd PhantomEye
+
+# Make the script executable and run it
+chmod +x phantomeye.sh
+bash phantomeye.sh
+
+### License
+This project is licensed under the MIT License.
+
+### Final Note
+Education, ethics, and responsible practice come first.
+This project demonstrates browser security, permission handling, and user-awareness best practices in a controlled lab environment.
