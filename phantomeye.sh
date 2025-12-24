@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #!/bin/bash
 # PhantomEye_V4.0 - Fixed and Enhanced
 # Author - DreamDreafted (dreamdrafted000@gmail.com)
@@ -1490,4 +1489,4 @@ trap 'stop' INT TERM
 # Run main function
 
 main
->>>>>>> e3670fca56ffd4e1d6cc6dba7918d480ccf30550
+
